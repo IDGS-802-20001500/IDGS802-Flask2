@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+
+    {% block content %}
+        
+        <div class="container" style="border-bottom: 2px solid black; display: flex;">
+            {% from "_macros.html" import render_field, render_input %}
+            <form action="" method="post">
+                <div class="from-group">
+                    {{render_field(form.nums)}}
+                </div>
+                <input type="submit" value="Imprimir">
+            </form>
+            <br>
+
+            <div>
+                {% if form.nums.data %}
+                <form action="/Respuesta" method="post">
+                    <div class="from-group">
+                        {% for i in range(0, form.nums.data) %}
+                        {{render_input(name=N)}}
+                        {% endfor %}
+                    </div>
+                    <input type="submit" value="Calcular">
+                </form>
+            {% endif %}
+            </div>
+
+        </div>
+    {% endblock %}
