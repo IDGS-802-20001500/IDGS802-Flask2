@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask import request
 
 import forms
-import Actividad1_forms
+from Actividad1_forms import NumForms
 
 app=Flask(__name__)
 
@@ -24,28 +24,47 @@ def Alumno():
 
 @app.route("/Numeros", methods=["GET","POST"])
 def Numeros():
-    num_form=Actividad1_forms.NumForms(request.form)
-    if request.method=="POST":
-        num_form.nums.data
-    return render_template("Actividad1.html", form=num_form)
 
-app.route("/Respuesta", methods=["GET","POST"])
+    
+
+    if request.method =="GET":
+        num_form= NumForms()
+        return render_template("Actividad1.html", form=num_form)
+    else:
+        num_form= NumForms(request.form)
+        return render_template("Actividad1.html", form=num_form)
+    
+    
+
+@app.route("/Respuesta", methods=["POST"])
 def Respuesta():
+    nums_form = NumForms(request.form)
+    listaN = []
+
+    for numero in request.form.getlist("numbers"):
+        listaN.append(int(numero))
+
+    maxi = max(listaN)
+    mini = min(listaN)
+    prom = sum(listaN)/len(listaN)
+
     
-    datos = []
-    N = request.form.get("N")
-    for numbers in N:
-        datos.append(numbers)
+    def repetir(lista):
+        contador = {}
+        for numer in lista:
+            if numer in contador:
+                contador[numer] += 1
+            else:
+                contador[numer] = 1
+            repetidos = {}
+        for index in contador:
+            if contador[index] > 1:
+                repetidos[index] = contador[index]
+        return repetidos
+        
+    repit = repetir(listaN)
     
-    maximo = max(datos)
-    minimo = min(datos)
-    promedio = sum(datos)/len(datos)
-
-    print("max = {}, min {}, prom {}".format(maximo,minimo,promedio))
-
-
-
-    return render_template("Respuesta.html", maximo=maximo, minimo=minimo, promedio=promedio)
+    return render_template("Respuesta.html", maximo=maxi, minimo=mini, promedio=prom,repetidos = repit)
 
 
 if __name__ =="__main__":

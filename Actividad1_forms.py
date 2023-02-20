@@ -4,3 +4,4 @@ from wtforms import StringField, SubmitField, FieldList, FormField, SelectField,
 
 class NumForms(Form):
     nums = IntegerField('Numero: ')
+    numbers = FieldList(StringField('numero'))
