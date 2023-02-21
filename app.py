@@ -13,7 +13,9 @@ def formulario2():
 @app.route("/Alumnos",methods=["GET","POST"])
 def Alumno():
     alum_form=forms.UserForm(request.form)
-    if request.method=="POST":
+    mat = ""
+    nom = ""
+    if request.method=="POST" and alum_form.validate():
         mat=alum_form.matricula.data
         nom=alum_form.nombre.data
         #alum_form.apaterno.data

@@ -11,9 +11,9 @@
                 <h4>Promedio: {{promedio}}</h4>
                 <br>
                 <h4>Repetidos</h4>
-                <ul>
-                    {% for rep,i in repetidos.items() %}
-                    <li style="color: red">{{rep}} --> {{i}} veces</li>
+                <ul style="list-style: none;">
+                    {% for index,i in repetidos.items() %}
+                    <li style="color: red; font-size: 20px; padding-top: 5px;">{{index}} --> {{i}} veces</li>
                     {% endfor %}
                 </ul>
 

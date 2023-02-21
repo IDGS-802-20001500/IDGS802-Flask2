@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+    {%block content%}
+
+        <div class="col-xs-6" style="border-bottom: 2px solid black;">
+            {%from "_macros.html" import render_field%}
+            <form action="" method="post" novalidate>
+                {{render_field(form.ingles)}}
+                {{render_field(form.espanol)}}
+                <input class="btn btn-danger" type="submit" value="Guardar">
+            </form>
+        </div>
+        <br>
+        <h2>Buscar</h2>
+        <label for="idioma">Español</label>
+        <input type="radio" name="idioma" value="espanol">
+        <label for="idioma">Ingles</label>
+        <input type="radio" name="idioma" value="ingles">
+
+    {%endblock%}
