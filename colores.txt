@@ -1,0 +1,9 @@
+red:rojo
+green:verde
+pink:rosa
+yellow:amarillo
+gray:gris
+black:negro
+cian:cian
+purple:violeta
+sand:arena

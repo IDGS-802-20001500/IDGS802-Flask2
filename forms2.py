@@ -6,4 +6,5 @@ class ColorForm(Form):
 
     ingles = StringField("Ingles: ",[validators.DataRequired(message="Se requiere poner el color")])
     espanol = StringField("Español: ",[validators.DataRequired(message="Se requiere poner el color")])
+    color = StringField("Color: ")
     

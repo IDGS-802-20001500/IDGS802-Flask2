@@ -2,20 +2,18 @@ Hola Mundo!!!MarioPedro
 
 Mario
 Pedro
-{'Matricula': 20001500, 'Nombre': 'Mauricio Israel', 'Apellidos': 'Ferández Ramos', 'Correo': '20001500@alumnos.utleon.edu.mx'}
-Matricula
-Nombre
-Apellidos
-CorreoMatriculaNombreApellidosCorreo
-Matricula
-Nombre
-Apellidos
-Correo('Matricula', 20001500)('Nombre', 'Mauricio Israel')('Apellidos', 'Ferández Ramos')('Correo', '20001500@alumnos.utleon.edu.mx')
-('Matricula', 20001500)
-('Nombre', 'Mauricio Israel')
-('Apellidos', 'Ferández Ramos')
-('Correo', '20001500@alumnos.utleon.edu.mx')
-('Matricula', 20001500)
-('Nombre', 'Mauricio Israel')
-('Apellidos', 'Ferández Ramos')
-('Correo', '20001500@alumnos.utleon.edu.mx')
+
+Matricula: 20001500
+Nombre: Mauricio Israel
+Apellidos: Ferández Ramos
+Correo: 20001500@alumnos.utleon.edu.mx
+
+Matricula: 20001500
+Nombre: Mauricio Israel
+Apellidos: Ferández Ramos
+Correo: 20001500@alumnos.utleon.edu.mx
+
+Matricula: 20001500
+Nombre: Mauricio Israel
+Apellidos: Ferández Ramos
+Correo: 20001500@alumnos.utleon.edu.mx

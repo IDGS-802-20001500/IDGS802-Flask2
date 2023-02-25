@@ -6,6 +6,7 @@
         <div class="col-xs-6">
             {%from "_macros.html" import render_field%}
             <form action="" method="post" novalidate>
+                <input type="hidden" name="csrf_token" value="{{csfr_token()}}">
                 <div class="from-group">
                     {{render_field(form.matricula)}}
                 </div>

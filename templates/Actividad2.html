@@ -4,7 +4,10 @@
 
         <div class="col-xs-6" style="border-bottom: 2px solid black;">
             {%from "_macros.html" import render_field%}
-            <form action="" method="post" novalidate>
+            
+            <form action="/colores" method="post" novalidate {{csrf_token}}>
+                
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
                 {{render_field(form.ingles)}}
                 {{render_field(form.espanol)}}
                 <input class="btn btn-danger" type="submit" value="Guardar">
@@ -12,9 +15,25 @@
         </div>
         <br>
         <h2>Buscar</h2>
-        <label for="idioma">Español</label>
-        <input type="radio" name="idioma" value="espanol">
-        <label for="idioma">Ingles</label>
-        <input type="radio" name="idioma" value="ingles">
+        <div class="container">
+            <div class="col-xs-6" style="display: inline-block;  width: 50%; margin: 10px; padding: 10px;">
+                <form action="/colores2" method="post" novalidate {{csrf_token}}>
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                    <label for="idioma">Español</label>
+                    <input type="radio" name="idioma" value="espanol">
+                    <br>
+                    <label for="idioma">Ingles</label>
+                    <input type="radio" name="idioma" value="ingles">
+                    <br>
+                    <br>
+                    {{render_field(form.color)}}
+                    <br>
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                </form>
+            </div>
+            <div class="col-xs-6" style="display: inline-block; margin: 10px; padding: 10px;">
+                <h3>Color: {{color}}</h3>
+            </div>
+        </div>
 
     {%endblock%}
