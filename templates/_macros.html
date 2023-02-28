@@ -9,6 +9,10 @@
 
 {%endmacro%}
 
+{% macro render_table(value,banda) %}
+    <td style="background-color:'{{value}}';">{{banda}}</td>
+{%endmacro%}
+
 {% macro render_field(field) %}
 
     <div class="control-group">

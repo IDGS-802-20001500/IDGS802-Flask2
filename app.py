@@ -4,9 +4,11 @@ from flask import request
 import forms
 from Actividad1_forms import NumForms
 from forms2 import ColorForm
+from Rforms import ResistForm
 from flask_wtf.csrf import CSRFProtect
 from flask import flash
 from flask import make_response
+from resistencias import ColoresResistencia
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = "Esta es una clave encriptada"
@@ -122,7 +124,7 @@ def colores():
         print(cesp)
         print(cing)
 
-        cdicc = {cing:cesp}
+        cdicc = {cing.lower():cesp.lower()}
         print(cdicc)
 
         with open("colores.txt", "a") as f:
@@ -147,30 +149,81 @@ def traduccion():
         with open("colores.txt", "r") as f:
             for linea in f:
                 clave, valor = linea.strip().split(":")
-                colores[clave] = valor
+                colores[clave.lower()] = valor.lower()
                 
            
 
         if request.form.get("idioma") == "ingles":
             for clave, valor in colores.items():
-                if valor == color:
+                if valor == color.lower():
                     print(clave)
                     encontrado = True
                     return render_template("Actividad2.html", form=speak_form, color=clave)
+            if not encontrado:
+                    return render_template("Actividad2.html", form=speak_form, color="No hay")
                 
             return
         if request.form.get("idioma") == "espanol":
             for clave, valor in colores.items():
-                if clave == color:
+                if clave == color.lower():
                     print(valor)
                     encontrado = True
                     return render_template("Actividad2.html", form=speak_form, color=valor)
+            if not encontrado:
+                return render_template("Actividad2.html", form=speak_form, color="No hay")
+            
+@app.route("/resistencia", methods=["GET","POST"])
+def resistencia():
+
+    rforms = ResistForm()
+    valor_cookie=request.cookies.get("datos_user")
+    nombre = valor_cookie.split("@")
+    b1 = 0
+    b2 = 0
+    b3 = 0
+    tol = 0
+    cb1 = " "
+    cb2 = " "
+    cb3 = " "
+    ctol = " "
+    valor = 0 
+    max = 0 
+    mini = 0
+    colorb1 = " "
+    colorb2 = " "
+    colorb3 = " "
+
+    colortol = " "
+    
+
+    if request.method=="POST" and nombre != None:
+       b1 = int(request.form["banda1"])
+       b2 = int(request.form["banda2"])
+       b3 = int(request.form["banda3"])
+       tol = float(request.form.get("rbtnTol"))
+
+       print("banda 1: {}, banda 2: {}, banda 3: {}, tol: {}".format(b1,b2,b3, tol))
+
+       print("min: {}, ohms: {}, max: {}".format((((b1+b2)*b3)*(tol+1)),((b1+b2)*b3),(((b1+b2)*b3)-(((b1+b2)*b3)*tol))))
+
+       valor = (b1+b2)*b3
+       max = ((b1+b2)*b3)*(tol+1)
+       mini = ((b1+b2)*b3)-(((b1+b2)*b3)*tol)
+       
+
+       colors = ColoresResistencia(b1, b2, b3, tol)    
+       cb1 = colors.banda1()
+       cb2 = colors.banda2()
+       cb3 = colors.banda3()
+       ctol = colors.tolerancia()
+
+       print("{}, {}, {}, {}".format(cb1,cb2,cb3,ctol))
+
+       
+
+    return render_template("Resistencias.html", form=rforms, banda_1=cb1, banda_2=cb2, banda_3=cb3, tolerancia=ctol, valor=valor, mini=mini, max=max, nom=nombre[0])
                 
-        if not encontrado:
-                    return render_template("Actividad2.html", form=speak_form, color="No hay")
-
-
-
+        
 
 if __name__ =="__main__":
     csrf.init_app(app)

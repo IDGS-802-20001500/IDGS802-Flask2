@@ -20,7 +20,7 @@
                 <form action="/colores2" method="post" novalidate {{csrf_token}}>
                     <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
                     <label for="idioma">Español</label>
-                    <input type="radio" name="idioma" value="espanol">
+                    <input type="radio" name="idioma" value="espanol" checked>
                     <br>
                     <label for="idioma">Ingles</label>
                     <input type="radio" name="idioma" value="ingles">
