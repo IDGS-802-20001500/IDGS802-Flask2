@@ -189,11 +189,15 @@ def resistencia():
     valor = 0 
     max = 0 
     mini = 0
-    colorb1 = " "
-    colorb2 = " "
-    colorb3 = " "
+    backg1 = " "
+    backg2 = " "
+    backg3 = " "
+    backg4 = " "
 
-    colortol = " "
+    textco1 = " "
+    textco2 = " "
+    textco3 = " "
+    
     
 
     if request.method=="POST" and nombre != None:
@@ -217,11 +221,21 @@ def resistencia():
        cb3 = colors.banda3()
        ctol = colors.tolerancia()
 
+       backg1 = colors.color1()
+       backg2 = colors.color2()
+       backg3 = colors.color3()
+       backg4 = colors.color4()
+
+       #textco1 = colors.text1()
+       #textco2 = colors.text2()
+       #textco3 = colors.text3()
+
        print("{}, {}, {}, {}".format(cb1,cb2,cb3,ctol))
 
        
 
-    return render_template("Resistencias.html", form=rforms, banda_1=cb1, banda_2=cb2, banda_3=cb3, tolerancia=ctol, valor=valor, mini=mini, max=max, nom=nombre[0])
+    return render_template("Resistencias.html", form=rforms, banda_1=cb1, banda_2=cb2, banda_3=cb3, tolerancia=ctol, valor=valor, mini=mini, max=max, nom=nombre[0], bgc1=backg1, bgc2=backg2, bgc3=backg3,
+                           bgc4=backg4)
                 
         
 
